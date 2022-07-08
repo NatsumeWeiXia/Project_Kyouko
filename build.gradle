@@ -1,0 +1,63 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.1'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.30'
+    id 'java'
+}
+
+/* --- SpringBoot Dependence --- */
+apply plugin: 'io.spring.dependency-management'
+
+group 'th.weixia'
+version '1.0-SNAPSHOT'
+
+/* --- JAVA VERSION --- */
+/* sourceCompatibility = 11
+   targetCompatibility = 11 */
+
+/* --- KOTLIN JAVA VERSION --- */
+compileKotlin.kotlinOptions.jvmTarget = "11"
+compileTestKotlin.kotlinOptions.jvmTarget = "11"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    /* --- SPRINGBOOT --- */
+    api('org.springframework.boot:spring-boot-starter-web') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+    api('org.springframework.boot:spring-boot-starter-jdbc') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+
+    /* --- SQL --- */
+    api 'org.postgresql:postgresql:42.4.0'
+    implementation 'org.flywaydb:flyway-core'
+    implementation('org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+    api 'org.mybatis:mybatis:3.5.10'
+
+    /* --- TEST --- */
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+
+    /* --- LOG --- */
+    implementation 'org.apache.logging.log4j:log4j-api:2.17.2'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.2'
+    runtimeOnly 'org.apache.logging.log4j:log4j-core:2.17.2'
+    runtimeOnly 'com.lmax:disruptor:3.4.4'
+
+    /* --- MIRAI --- */
+    api(platform("net.mamoe:mirai-bom:2.11.1"))
+    api 'net.mamoe:mirai-core-api'
+    runtimeOnly 'net.mamoe:mirai-core'
+
+    /* --- TOOL --- */
+}
+
+test {
+    useJUnitPlatform()
+}

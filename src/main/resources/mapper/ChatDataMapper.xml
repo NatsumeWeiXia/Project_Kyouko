@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="th.weixia.kyouko.mapper.ChatDataMapper">
+    <insert id="insert" parameterType="th.weixia.kyouko.pojo.ChatData">
+        insert into t_wx_kyouko_chat_data("cd_user_id","cd_user_name","cd_content","cd_group_id","cd_group_name","cd_file_type","cd_file_id","cd_chat_time")
+        values (#{userId},#{userName},#{content},#{groupId},#{groupName},#{fileType},#{fileId},#{chatDate})
+    </insert>
+</mapper>
