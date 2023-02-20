@@ -32,6 +32,6 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
 
 BotConfig:
-  account: 2528894276
-  password: sion@1992
+  account: 
+  password: 
 
